@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-// import countriesData from '../countriesData'
+import fallbackCountriesData from '../countriesData'
 import CountryCard from './CountryCard'
 import CountriesListShimmer from './CountriesListShimmer'
 
@@ -10,7 +10,13 @@ export default function CountriesList({ query }) {
     fetch('https://restcountries.com/v3.1/all?fields=name,capital,currencies,region,subregion,languages,maps,population,flags,coatOfArms')
       .then((res) => res.json())
       .then((data) => {
-        setCountriesData(data)
+        if (Array.isArray(data)) {
+          setCountriesData(data)
+        }
+        else{
+          setCountriesData(fallbackCountriesData)
+        }
+        
       })
   }, [])
 
