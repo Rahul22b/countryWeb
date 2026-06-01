@@ -7,7 +7,7 @@ export default function CountriesList({ query }) {
   const [countriesData, setCountriesData] = useState([])
 
   useEffect(() => {
-    fetch('https://restcountries.com/v3.1/all')
+    fetch('https://restcountries.com/v3.1/all?fields=name,capital,currencies,region,subregion,languages,maps,population,flags,coatOfArms')
       .then((res) => res.json())
       .then((data) => {
         setCountriesData(data)
